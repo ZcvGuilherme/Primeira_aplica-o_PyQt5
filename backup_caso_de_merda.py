@@ -1,5 +1,5 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QMainWindow, QToolBar, QToolButton, QWidget, QVBoxLayout, QSizePolicy, QMenu, QAction, QLabel, QStackedLayout, QStackedWidget, QPushButton, QBoxLayout, QHBoxLayout
+from PyQt5.QtWidgets import QApplication, QMainWindow, QToolBar, QToolButton, QWidget, QVBoxLayout, QSizePolicy, QMenu, QAction, QLabel, QStackedLayout, QStackedWidget, QPushButton
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import QSize, Qt, QRect
 #CLASSE PARA TELA DOS EVENTOS
@@ -10,24 +10,10 @@ class TelaEventos(QWidget):
 
     def init_ui(self):
         self.Tela_Widget_Evento()
+        self.botoes()
     def Tela_Widget_Evento(self):
-        layout = QHBoxLayout()
-        left_side_layout = QVBoxLayout()
-
-        left_side_layout.setSpacing(10)
-        left_side_layout.setContentsMargins(10, 10, 10, 10)
-
-        self.left_sidebar = QWidget()
-        self.left_sidebar.setLayout(left_side_layout)
-        self.left_sidebar.setStyleSheet('''
-                    background-color: #B0E0E6;
-                    border: 1px solid black;
-                    border-radius:5px
-                                        ''')
-        self.left_sidebar.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
-        self.left_sidebar.setMinimumSize(50, 50)
-        self.botoes(layout=left_side_layout)
-
+        layout = QVBoxLayout()
+        layout.addWidget(QLabel())
         #configura o widget
         self.WidEvento = QWidget()
 
@@ -39,105 +25,39 @@ class TelaEventos(QWidget):
                 margin: 20px;               
                 font-family: Arial, sans-serif; 
                 font-size: 14px;           
-                color: #333333;
-                text-align: center;         
+                color: #333333;            
                 ''')
         self.WidEvento.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
         self.evento_layout = QVBoxLayout()
-        self.evento_layout.addWidget(QLabel('|CONTEUDO DO WID GRANDE'))
+
         self.WidEvento.setLayout(self.evento_layout)
 
-        layout.addWidget(self.left_sidebar)
         layout.addWidget(self.WidEvento)
 
         self.setLayout(layout)
-    def botoes(self, layout):
+    def botoes(self):
         #---------------BOTAO-------------------#
-        botao_1 = QPushButton('Adicionar\n Evento')
+        botao_1 = QPushButton('botao 1')
         botao_1.setStyleSheet('''
                 QPushButton{
-                    background-color: #00FF7F;
                     border: 1px solid black;
                     border-radius: 5px;
                     font-size: 16px;
-                    text-align: center;
                               }
                 QPushButton:hover {
-                    background-color: #90EE90;
+                    background-color: #FFE4B5;
                               }
                 QPushButton:pressed{
-                    background-color: #8FBC8F;
+                    background-color: #FFDAB9;
                               }
                             ''')
         botao_1.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
-        botao_1.setMinimumSize(QSize(100, 100))
+        botao_1.setMinimumSize(QSize(200, 70))
         botao_1.clicked.connect(self.click_button)
-        layout.addWidget(botao_1, alignment=Qt.AlignTop)
+
         #------------------------------------------#
-        botao_2 = QPushButton('Deletar')
-        botao_2.setStyleSheet('''
-                QPushButton{
-                    background-color: OrangeRed; 
-                    border: 1px solid black;
-                    border-radius: 5px; 
-                    font-size: 16px;
-                    text-align: center;
-                              }
-                QPushButton:hover {
-                    background-color: #FF8C00;
-                              }
-                QPushButton:pressed{
-                    background-color: #FFA500;
-                              }
-                            ''')
-        botao_2.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
-        botao_2.setMinimumSize(QSize(100, 100))
-        
-        botao_2.clicked.connect(self.click_button)
-        layout.addWidget(botao_2, alignment=Qt.AlignTop)
-        #-----------------------BOTAO 3---------------------------#
-        botao_3 = QPushButton('botao 3')
-        botao_3.setStyleSheet('''
-                QPushButton{
-                    background-color: #00FF7F;
-                    border: 1px solid black;
-                    border-radius: 5px;
-                    font-size: 16px;
-                    text-align: center;
-                              }
-                QPushButton:hover {
-                    background-color: #90EE90;
-                              }
-                QPushButton:pressed{
-                    background-color: #8FBC8F;
-                              }
-                            ''')
-        botao_3.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
-        botao_3.setMinimumSize(QSize(100, 100))
-        botao_3.clicked.connect(self.click_button)
-        layout.addWidget(botao_3, alignment=Qt.AlignTop)
-        #-----------------------------#BOTAO 4#---------------------------------#
-        botao_4 = QPushButton('botao 4')
-        botao_4.setStyleSheet('''
-                QPushButton{
-                    background-color: #00FF7F;
-                    border: 1px solid black;
-                    border-radius: 5px;
-                    font-size: 16px;
-                    text-align: center;
-                              }
-                QPushButton:hover {
-                    background-color: #90EE90;
-                              }
-                QPushButton:pressed{
-                    background-color: #8FBC8F;
-                              }
-                            ''')
-        botao_4.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
-        botao_4.setMinimumSize(QSize(100, 100))
-        botao_4.clicked.connect(self.click_button)
-        layout.addWidget(botao_4, alignment=Qt.AlignTop)
+        self.evento_layout.addWidget(botao_1, alignment=Qt.AlignRight)
     def click_button(self):
         print('Clicou!!!')
 #CLASSE PARA TELA DOS DADOS 
