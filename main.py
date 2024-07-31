@@ -45,7 +45,7 @@ class TelaEventos(QWidget):
         self.WidEvento.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
         self.evento_layout = QVBoxLayout()
-        self.evento_layout.addWidget(QLabel('|CONTEUDO DO WID GRANDE'))
+        self.evento_layout.addWidget(QLabel('                                                  CONTEUDO DO WID GRANDE'))
         self.WidEvento.setLayout(self.evento_layout)
 
         layout.addWidget(self.left_sidebar)
@@ -57,17 +57,17 @@ class TelaEventos(QWidget):
         botao_1 = QPushButton('Adicionar\n Evento')
         botao_1.setStyleSheet('''
                 QPushButton{
-                    background-color: #00FF7F;
+                    background-color: #4CAF50;
                     border: 1px solid black;
                     border-radius: 5px;
                     font-size: 16px;
                     text-align: center;
                               }
                 QPushButton:hover {
-                    background-color: #90EE90;
+                    background-color: #45A049;
                               }
                 QPushButton:pressed{
-                    background-color: #8FBC8F;
+                    background-color: #388E3C;
                               }
                             ''')
         botao_1.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
@@ -75,20 +75,20 @@ class TelaEventos(QWidget):
         botao_1.clicked.connect(self.click_button)
         layout.addWidget(botao_1, alignment=Qt.AlignTop)
         #------------------------------------------#
-        botao_2 = QPushButton('Deletar')
+        botao_2 = QPushButton('Remover')
         botao_2.setStyleSheet('''
                 QPushButton{
-                    background-color: OrangeRed; 
+                    background-color: #F44336; 
                     border: 1px solid black;
                     border-radius: 5px; 
                     font-size: 16px;
                     text-align: center;
                               }
                 QPushButton:hover {
-                    background-color: #FF8C00;
+                    background-color: #E53935;
                               }
                 QPushButton:pressed{
-                    background-color: #FFA500;
+                    background-color: #D32F2F;
                               }
                             ''')
         botao_2.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
@@ -97,20 +97,20 @@ class TelaEventos(QWidget):
         botao_2.clicked.connect(self.click_button)
         layout.addWidget(botao_2, alignment=Qt.AlignTop)
         #-----------------------BOTAO 3---------------------------#
-        botao_3 = QPushButton('botao 3')
+        botao_3 = QPushButton('Modificar')
         botao_3.setStyleSheet('''
                 QPushButton{
-                    background-color: #00FF7F;
+                    background-color: #2196F3;
                     border: 1px solid black;
                     border-radius: 5px;
                     font-size: 16px;
                     text-align: center;
                               }
                 QPushButton:hover {
-                    background-color: #90EE90;
+                    background-color: #1976D2;
                               }
                 QPushButton:pressed{
-                    background-color: #8FBC8F;
+                    background-color: #1565C0;
                               }
                             ''')
         botao_3.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
@@ -118,20 +118,20 @@ class TelaEventos(QWidget):
         botao_3.clicked.connect(self.click_button)
         layout.addWidget(botao_3, alignment=Qt.AlignTop)
         #-----------------------------#BOTAO 4#---------------------------------#
-        botao_4 = QPushButton('botao 4')
+        botao_4 = QPushButton('Ajustes\nEvento')
         botao_4.setStyleSheet('''
                 QPushButton{
-                    background-color: #00FF7F;
+                    background-color: #FF9800;
                     border: 1px solid black;
                     border-radius: 5px;
                     font-size: 16px;
                     text-align: center;
                               }
                 QPushButton:hover {
-                    background-color: #90EE90;
+                    background-color: #F57C00;
                               }
                 QPushButton:pressed{
-                    background-color: #8FBC8F;
+                    background-color: #EF6C00;
                               }
                             ''')
         botao_4.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
@@ -172,7 +172,7 @@ class TelaConfig(QWidget):
         self.setLayout(layout)
 
 
-class Tela_pricipal(QMainWindow):
+class Tela_Principal(QMainWindow):
     def __init__(self):
         super().__init__()
         self.init_ui()
@@ -220,38 +220,10 @@ class Tela_pricipal(QMainWindow):
         botao1.setText('Eventos')
         botao1.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
         botao1.setMinimumSize(QSize(100, 30))
+        botao1.clicked.connect(self.abrir_tela_eventos)
         self.toolbar.addWidget(botao1)
-        #-----------------------------------#MENU 1#-------------------------------------#
-        menu = QMenu()
-        menu.setStyleSheet('''
-                QMenu {
-                    border: 1px solid black;
-                    border-radius: 5px;
-                    
-                        }
-                QMenu::item{
-                    padding: 0 10px;
-                    min-height: 30px;
-                    text-align: center;
-                            }
-                QMenu::item:selected {
-                    background-color: #87CEFA;
-                    color: black;
-                           }
-                QMenu::item:disabled {
-                    color: #d0d0d0;
-                           }
-                           ''')
-        actions = [
-            QAction('Adicionar', self),
-            QAction('Deletar', self),
-            QAction('Modificar', self),
-            QAction('Gerenciar', self)
-        ]
-        menu.addActions(actions)
-
-        botao1.setMenu(menu)
         botao1.setPopupMode(QToolButton.InstantPopup)
+
         #----------------------#BOTAO 2#--------------------#
         botao2 = QToolButton()
         botao2.setText('Dados')
@@ -374,7 +346,7 @@ class Tela_pricipal(QMainWindow):
         self.stacked_widget.addWidget(self.tela_clientes)
         self.stacked_widget.addWidget(self.tela_configurações)
     #--------------------BOTOES FUNÇÕES PRINCIPAIS-----------------------#
-    def abrir_tela_ajustes(self):
+    def abrir_tela_eventos(self):
         self.stacked_widget.setCurrentWidget(self.tela_eventos)
     def mostrar_tela_dados(self):
         self.stacked_widget.setCurrentWidget(self.tela_dados)
@@ -385,6 +357,6 @@ class Tela_pricipal(QMainWindow):
         self.stacked_widget.setCurrentWidget(self.tela_configurações)
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    main_window = Tela_pricipal()
+    main_window = Tela_Principal()
     main_window.show()
     sys.exit(app.exec_())
