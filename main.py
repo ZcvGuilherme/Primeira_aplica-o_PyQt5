@@ -141,37 +141,6 @@ class TelaEventos(QWidget):
     def click_button(self):
         print('Clicou!!!')
 #CLASSE PARA TELA DOS DADOS 
-class TelaDados(QWidget):
-    def __init__(self):
-        super().__init__()
-        self.init_ui()
-
-    def init_ui(self):
-        layout = QVBoxLayout()
-        layout.addWidget(QLabel('Tela de Dados'))
-        self.setLayout(layout)
-#CLASSE PARA TELA CLIENTES
-class TelaClientes(QWidget):
-    def __init__(self):
-        super().__init__()
-        self.init_ui()
-
-    def init_ui(self):
-        layout = QVBoxLayout()
-        layout.addWidget(QLabel('Tela de Clientes'))
-        self.setLayout(layout)
-#CLASSE PARA TELA CONFIGURAÇÕES
-class TelaConfig(QWidget):
-    def __init__(self):
-        super().__init__()
-        self.init_ui()
-
-    def init_ui(self):
-        layout = QVBoxLayout()
-        layout.addWidget(QLabel('Tela de Ajustes'))
-        self.setLayout(layout)
-
-
 class Tela_Principal(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -285,7 +254,6 @@ class Tela_Principal(QMainWindow):
         botao2.setPopupMode(QToolButton.InstantPopup)
         #----------------------#BOTAO 3#--------------------#
         botao3 = QToolButton()
-        botao3.clicked.connect(self.mostrar_tela_clientes)
         botao3.setText('Clientes')
         botao3.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
         botao3.setMinimumSize(QSize(100, 30))
@@ -318,7 +286,7 @@ class Tela_Principal(QMainWindow):
                             }
                             ''')
         botao_ajustes = QAction('Ajustes', self)
-        botao_ajustes.triggered.connect(self.abrir_tela_ajustes)
+        #botao_ajustes.triggered.connect(self.abrir_tela_ajustes)
         botao_ajuda = QAction('Ajuda', self)
         #botao_ajuda.triggered.connect(self.)
         actions = [
@@ -337,24 +305,12 @@ class Tela_Principal(QMainWindow):
         self.setCentralWidget(self.stacked_widget)
         #------------declaração das telas--------------------------#
         self.tela_eventos = TelaEventos()
-        self.tela_dados = TelaDados()
-        self.tela_clientes = TelaClientes()
-        self.tela_configurações = TelaConfig()
         #--------------CHAMAR AS TELAS---------------------#
         self.stacked_widget.addWidget(self.tela_eventos)
-        self.stacked_widget.addWidget(self.tela_dados)
-        self.stacked_widget.addWidget(self.tela_clientes)
-        self.stacked_widget.addWidget(self.tela_configurações)
     #--------------------BOTOES FUNÇÕES PRINCIPAIS-----------------------#
     def abrir_tela_eventos(self):
         self.stacked_widget.setCurrentWidget(self.tela_eventos)
-    def mostrar_tela_dados(self):
-        self.stacked_widget.setCurrentWidget(self.tela_dados)
-    def mostrar_tela_clientes(self):
-        self.stacked_widget.setCurrentWidget(self.tela_clientes)
-        print('botao apertado')
-    def mostrar_tela_config(self):
-        self.stacked_widget.setCurrentWidget(self.tela_configurações)
+
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     main_window = Tela_Principal()
