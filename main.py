@@ -54,7 +54,7 @@ class TelaEventos(QWidget):
         self.setLayout(layout)
     def botoes(self, layout):
         #---------------BOTAO-------------------#
-        botao_1 = QPushButton('Adicionar\n Evento')
+        botao_1 = QPushButton('Botão 1')
         botao_1.setStyleSheet('''
                 QPushButton{
                     background-color: #4CAF50;
@@ -75,7 +75,7 @@ class TelaEventos(QWidget):
         botao_1.clicked.connect(self.click_button)
         layout.addWidget(botao_1, alignment=Qt.AlignTop)
         #------------------------------------------#
-        botao_2 = QPushButton('Remover')
+        botao_2 = QPushButton('Botão 2')
         botao_2.setStyleSheet('''
                 QPushButton{
                     background-color: #F44336; 
@@ -97,7 +97,7 @@ class TelaEventos(QWidget):
         botao_2.clicked.connect(self.click_button)
         layout.addWidget(botao_2, alignment=Qt.AlignTop)
         #-----------------------BOTAO 3---------------------------#
-        botao_3 = QPushButton('Modificar')
+        botao_3 = QPushButton('Botão 3')
         botao_3.setStyleSheet('''
                 QPushButton{
                     background-color: #2196F3;
@@ -118,7 +118,7 @@ class TelaEventos(QWidget):
         botao_3.clicked.connect(self.click_button)
         layout.addWidget(botao_3, alignment=Qt.AlignTop)
         #-----------------------------#BOTAO 4#---------------------------------#
-        botao_4 = QPushButton('Ajustes\nEvento')
+        botao_4 = QPushButton('Botão 4')
         botao_4.setStyleSheet('''
                 QPushButton{
                     background-color: #FF9800;
@@ -148,7 +148,6 @@ class Tela_Principal(QMainWindow):
 
     def init_ui(self):
         self.configura_tela()
-        self.configura_toolbar()
         self.cria_telas()
     def configura_tela(self):
         #---------------------------CONFIGURAÇÃO TELA------------------------#
@@ -159,146 +158,6 @@ class Tela_Principal(QMainWindow):
                 background-color: white;
                            ''')
         self.setMinimumSize(300, 300)
-    def configura_toolbar(self):
-        self.toolbar = QToolBar('EasterEgg YaY')
-        self.addToolBar(Qt.TopToolBarArea, self.toolbar)
-        self.toolbar.setStyleSheet('''
-                QToolButton {
-                    text-align: center;
-                    border: 1px solid #d0d0d0;
-                    border-radius: 5px;
-                    padding: 5px;
-                             }
-                QToolButton:hover {
-                    background-color: #F8F8FF
-                                   }
-                QToolButton:pressed {
-                    background-color: #F0F8FF
-                                   }
-                             ''')
-        #espaçadores aqui:
-        spacer_left = QWidget()
-        spacer_right = QWidget()
-        spacer_left.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
-        spacer_right.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
-
-        self.toolbar.addWidget(spacer_left)
-
-        #----------------------#BOTAO 1#--------------------#
-        botao1 = QToolButton()
-        botao1.setText('Eventos')
-        botao1.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
-        botao1.setMinimumSize(QSize(100, 30))
-        botao1.clicked.connect(self.abrir_tela_eventos)
-        self.toolbar.addWidget(botao1)
-        botao1.setPopupMode(QToolButton.InstantPopup)
-
-        #----------------------#BOTAO 2#--------------------#
-        botao2 = QToolButton()
-        botao2.setText('Dados')
-        botao2.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
-        botao2.setMinimumSize(QSize(100, 30))
-        self.toolbar.addWidget(botao2)
-        #---------------------#MENU 2#-----------------------#
-        menu2 = QMenu()
-        menu2.setStyleSheet('''
-                QMenu {
-                    border: 1px solid black;
-                    border-radius: 5px;
-                        }
-                QMenu::item{
-                    padding: 0 10px;
-                    min-height: 30px;
-                    text-align: center;
-                            }
-                QMenu::item:selected {
-                    background-color: #87CEFA;
-                    color: black;
-                           }
-                QMenu::item:disabled {
-                    color: #d0d0d0;
-                           }
-                           ''')
-        exportar_menu = QMenu('Exportar', self)
-        exportar_menu.setStyleSheet('''
-                QMenu {
-                border: 1px solid black;
-                border-radius: 5px;
-            }
-            QMenu::item {
-                padding: 0 10px;
-                min-height: 30px;
-                text-align: center;
-            }
-            QMenu::item:selected {
-                background-color: #87CEFA;
-                color: black;
-            }
-            QMenu::item:disabled {
-                color: #d0d0d0;
-            }
-                                    ''')
-        exportar_menu.addActions([
-            QAction('CSV', self),
-            QAction('PDF', self),
-            QAction('JSON', self)
-        ])
-        menu2.addMenu(exportar_menu)
-        actions = [
-            QAction('Importar', self),
-            QAction('Vizualização HTML', self)
-        ]
-        menu2.addActions(actions)
-
-        botao2.setMenu(menu2)
-        botao2.setPopupMode(QToolButton.InstantPopup)
-        #----------------------#BOTAO 3#--------------------#
-        botao3 = QToolButton()
-        botao3.setText('Clientes')
-        botao3.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
-        botao3.setMinimumSize(QSize(100, 30))
-        self.toolbar.addWidget(botao3)
-
-        #----------------------#BOTAO 4#--------------------#
-        botao4 = QToolButton()
-        botao4.setText('Configurações')
-        botao4.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
-        botao4.setMinimumSize(QSize(100, 30))
-        self.toolbar.addWidget(botao4)
-
-        menu4 = QMenu()
-        menu4.setStyleSheet('''
-                    QMenu {
-                        border: 1px solid black;
-                        border-radius: 5px;
-                            }
-                    QMenu::item{
-                        padding: 0 10px;
-                        min-height: 30px;
-                        text-align: center;
-                                }
-                    QMenu::item:selected {
-                        background-color: #87CEFA;
-                        color: black;
-                            }
-                    QMenu::item:disabled {
-                        color: #d0d0d0;
-                            }
-                            ''')
-        botao_ajustes = QAction('Ajustes', self)
-        #botao_ajustes.triggered.connect(self.abrir_tela_ajustes)
-        botao_ajuda = QAction('Ajuda', self)
-        #botao_ajuda.triggered.connect(self.)
-        actions = [
-            botao_ajustes,
-            botao_ajuda
-          ]
-        menu4.addActions(actions)
-        
-        botao4.setMenu(menu4)
-        botao4.setPopupMode(QToolButton.InstantPopup)
-
-        self.toolbar.addWidget(spacer_right)
     def cria_telas(self):
         #QStackedWidget para Widgets que ficam alternando entre eles
         self.stacked_widget = QStackedWidget()
