@@ -175,3 +175,6 @@ if __name__ == "__main__":
     main_window = Tela_Principal()
     main_window.show()
     sys.exit(app.exec_())
+
+
+    
